@@ -5,21 +5,21 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/textViewInboxFragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Text inside fragment"
-        android:id="@+id/textViewInboxFragment"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="159dp" />
+        android:layout_marginBottom="159dp"
+        android:text="Text inside fragment"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
-        android:backgroundTint="@color/md_yellow_700"
+        android:id="@+id/buttonFragmentInbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button change text"
-        android:id="@+id/buttonFragmentInbox"
+        android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:backgroundTint="@color/md_yellow_700"
+        android:text="Button change text" />
 </RelativeLayout>
