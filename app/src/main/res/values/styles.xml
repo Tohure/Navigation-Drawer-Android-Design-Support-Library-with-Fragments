@@ -6,9 +6,9 @@
     </style>
 
     <style name="Base.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/md_indigo_500</item>
-        <item name="colorPrimaryDark">@color/md_indigo_700</item>
-        <item name="colorAccent">@color/md_pink_500</item>
+        <item name="colorPrimary">#1583da</item>
+        <item name="colorPrimaryDark">#0060ab</item>
+        <item name="colorAccent">#ffea27</item>
         <item name="colorControlHighlight">@color/md_indigo_500_25</item>
         <item name="android:windowBackground">@color/md_white_1000</item>
     </style>

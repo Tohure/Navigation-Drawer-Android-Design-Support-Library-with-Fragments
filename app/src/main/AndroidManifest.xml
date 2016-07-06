@@ -9,7 +9,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name="com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrarywithfragments.MainActivity"
-            android:label="@string/app_name">
+            android:label="RPP Aplha v2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

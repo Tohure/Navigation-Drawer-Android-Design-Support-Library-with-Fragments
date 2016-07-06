@@ -3,9 +3,11 @@ package com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupport
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrarywithfragments.Fragments.BetaFragment;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrarywithfragments.Fragments.InboxFragment;
 import com.videumcorp.desarrolladorandroid.navigationdrawerandroiddesignsupportlibrarywithfragments.Fragments.StarredFragment;
 
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     Toolbar toolbar;
     ActionBar actionBar;
+    TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,28 +37,20 @@ public class MainActivity extends AppCompatActivity {
 
         actionBar = getSupportActionBar();
         assert actionBar != null;
-        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setDisplayShowTitleEnabled(false);
+
+        ViewPager mPager = (ViewPager) findViewById(R.id.pager);
+        setupViewPager(mPager);
+
+        tabLayout = (TabLayout) findViewById(R.id.tablayout);
+        tabLayout.setupWithViewPager(mPager);
 
         drawerLayout = (DrawerLayout) findViewById(R.id.navigation_drawer_layout);
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
-        if (navigationView != null) {
-            setupNavigationDrawerContent(navigationView);
-        }
+        if (navigationView != null) { setupNavigationDrawerContent(navigationView); }
 
         setupNavigationDrawerContent(navigationView);
-
-        //First fragment
-        setFragment(0);
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     @Override
@@ -75,12 +71,10 @@ public class MainActivity extends AppCompatActivity {
                         switch (menuItem.getItemId()) {
                             case R.id.item_navigation_drawer_inbox:
                                 menuItem.setChecked(true);
-                                setFragment(0);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 return true;
                             case R.id.item_navigation_drawer_starred:
                                 menuItem.setChecked(true);
-                                setFragment(1);
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 return true;
                             case R.id.item_navigation_drawer_sent_mail:
@@ -109,25 +103,18 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-    public void setFragment(int position) {
-        FragmentManager fragmentManager;
-        FragmentTransaction fragmentTransaction;
-        switch (position) {
-            case 0:
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                InboxFragment inboxFragment = new InboxFragment();
-                fragmentTransaction.replace(R.id.fragment, inboxFragment);
-                fragmentTransaction.commit();
-                break;
-            case 1:
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                StarredFragment starredFragment = new StarredFragment();
-                fragmentTransaction.replace(R.id.fragment, starredFragment);
-                fragmentTransaction.commit();
-                break;
-        }
+
+    private void setupViewPager(ViewPager viewPager) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        adapter.addFragment(BetaFragment.createInstance(20), "Tab1");
+        adapter.addFragment(BetaFragment.createInstance(4), "Tab2");
+        adapter.addFragment(BetaFragment.createInstance(3), "Tab3");
+        adapter.addFragment(BetaFragment.createInstance(4), "Tab4");
+        adapter.addFragment(BetaFragment.createInstance(5), "Tab5");
+        adapter.addFragment(BetaFragment.createInstance(6), "Tab6");
+        adapter.addFragment(BetaFragment.createInstance(7), "Tab7");
+        viewPager.setAdapter(adapter);
     }
+
 }
 
